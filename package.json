@@ -1,0 +1,11 @@
+{
+  "name": "BOT",
+  "type": "module",
+  "dependencies": {
+    "@google/genai": "^1.29.1",
+    "@google/generative-ai": "^0.24.1",
+    "comcigan-parser": "^1.0.0",
+    "discord.js": "^14.25.1",
+    "dokdo": "^1.1.0"
+  }
+}
