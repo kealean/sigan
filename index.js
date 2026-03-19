@@ -55,9 +55,9 @@ client.on(Events.InteractionCreate, async interaction => {
         r = random();
 
         if(r>0.5){
-            link = "https://i.imgur.com/ixYYyAh.png";
+            link = "https://i.imgur.com/qOfnqZz.png";
         }else{
-            link="https://i.imgur.com/QcvNpvR.png"
+            link="https://i.imgur.com/a4EEB0a.png"
         }
 
         const gr = interaction.options.getInteger('학년')
@@ -105,9 +105,9 @@ client.on(Events.InteractionCreate, async interaction => {
         r = random();
 
         if(r>0.5){
-            link = "https://i.imgur.com/ixYYyAh.png";
+            link = "https://i.imgur.com/qOfnqZz.png";
         }else{
-            link="https://i.imgur.com/QcvNpvR.png"
+            link="https://i.imgur.com/a4EEB0a.png"
         }
 
         const now = new Date();
