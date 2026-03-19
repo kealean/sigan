@@ -9,6 +9,7 @@ const timetable = new Timetable();
 
 var r;
 var link;
+var rand = 1;
 
 // --- 클라이언트 생성 ---
 const client = new Client({
@@ -97,10 +98,12 @@ client.on(Events.InteractionCreate, async interaction => {
         const cl = interaction.options.getInteger('반')
         r = random();
 
-        if(r>0.5){
+        if(r>rand*2/3){
             link = "https://i.imgur.com/qOfnqZz.png";
+        }else if(r>rand/3){
+            link = "https://i.imgur.com/a4EEB0a.png";
         }else{
-            link="https://i.imgur.com/a4EEB0a.png"
+            link = "https://i.imgur.com/CnJ62YE.png";
         }
 
         const now = new Date();
