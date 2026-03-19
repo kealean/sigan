@@ -48,6 +48,56 @@ client.on(Events.InteractionCreate, async interaction => {
         // [필수] 서버 환경에서 3초 타임아웃 방지를 위해 무조건 첫 줄에 배치
         await interaction.deferReply();
 
+        var dd;
+
+        const gr = interaction.options.getInteger('학년')
+        const cl = interaction.options.getInteger('반')
+        const day = interaction.options.getInteger('요일');
+        switch(day){
+            case 0:
+                dd = "월요일";
+                break;
+            case 1:
+                dd = "화요일"
+                break;
+                case 2:
+                dd = "수요일"
+                break;
+                case 3:
+                    dd = "목요일"
+                break;
+                    case 4:
+                        dd = "금요일"
+                        break;
+        }
+
+        try {
+            const result = await test(interaction);
+
+            if (!result || result.trim() === "") {
+                return await interaction.editReply('해당 날짜의 시간표 데이터가 없습니다.');
+            }
+            const embed = new EmbedBuilder().setColor(0xa2bffe).setTitle(`${dd}`).setAuthor({name: `${gr}학년 ${cl}반`}).setDescription(`${result}`);
+
+            // deferReply 이후에는 editReply를 사용해야 함
+            await interaction.editReply({ embeds: [embed] });
+        } catch (error) {
+            console.error('시간표 처리 중 에러:', error);
+            // 에러 발생 시에도 응답을 마무리지어줘야 함
+            await interaction.editReply('시간표를 가져오는 중에 오류가 발생했습니다.');
+        }
+    }
+    else if(interaction.commandName === '오늘시간표'){
+        await interaction.deferReply();
+
+        const gr = interaction.options.getInteger('학년')
+        const cl = interaction.options.getInteger('반')
+
+        const now = new Date();
+
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1;    // 3 (0이 1월이라 +1 필수!)
+        const date = now.getDate();          // 19
         try {
             const result = await test(interaction);
 
@@ -55,8 +105,10 @@ client.on(Events.InteractionCreate, async interaction => {
                 return await interaction.editReply('해당 날짜의 시간표 데이터가 없습니다.');
             }
 
+            const embed = new EmbedBuilder().setColor(0xa2bffe).setTitle(`${month}/${date}`).setAuthor({name: `${gr}학년 ${cl}반`}).setDescription(`${result}`).setFooter({text: `${year}년 ${month}월 ${date}일`});
+
             // deferReply 이후에는 editReply를 사용해야 함
-            await interaction.editReply(result);
+            await interaction.editReply({ embeds: [embed] });
         } catch (error) {
             console.error('시간표 처리 중 에러:', error);
             // 에러 발생 시에도 응답을 마무리지어줘야 함
@@ -72,12 +124,14 @@ const test = async (interaction) => {
     const school = await timetable.search('경기게임마이스터고등학교');
     timetable.setSchool(school[0].code);
 
-    const result = await timetable.getTimetable();
+    const result = await timetable.getTimetable()
+
+    const now = new Date();
 
     // 사용자가 입력한 값 (Integer 확인!)
     const g = interaction.options.getInteger('학년');
     const c = interaction.options.getInteger('반');
-    const d = interaction.options.getInteger('요일'); // Integer로 명확히 처리
+    const d = interaction.options.getInteger('요일') ?? now.getDay()-1; // Integer로 명확히 처리
 
     // 서버 환경에서 undefined 에러 방지를 위한 체이닝 확인
     if (!result[g] || !result[g][c] || !result[g][c][d]) {
