@@ -149,7 +149,7 @@ const test = async (interaction) => {
     // 사용자가 입력한 값 (Integer 확인!)
     const g = interaction.options.getInteger('학년');
     const c = interaction.options.getInteger('반');
-    const d = interaction.options.getInteger('요일') ?? now.getDay()-1; // Integer로 명확히 처리
+    const d = interaction.options.getInteger('요일') ?? (now.getDay()-1<0||now.getDay()-1>4?0:now.getDay()-1); // Integer로 명확히 처리
 
     // 서버 환경에서 undefined 에러 방지를 위한 체이닝 확인
     if (!result[g] || !result[g][c] || !result[g][c][d]) {
