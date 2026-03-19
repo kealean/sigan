@@ -7,6 +7,9 @@ const OWNER_ID = '682792713485418497';
 import Timetable from 'comcigan-parser';
 const timetable = new Timetable();
 
+var r = random();
+var link;
+
 // --- 클라이언트 생성 ---
 const client = new Client({
     intents: [
@@ -50,6 +53,12 @@ client.on(Events.InteractionCreate, async interaction => {
 
         var dd;
 
+        if(r>0.5){
+            link = "https://i.imgur.com/ixYYyAh.png";
+        }else{
+            link="https://i.imgur.com/QcvNpvR.png"
+        }
+
         const gr = interaction.options.getInteger('학년')
         const cl = interaction.options.getInteger('반')
         const day = interaction.options.getInteger('요일');
@@ -77,7 +86,7 @@ client.on(Events.InteractionCreate, async interaction => {
             if (!result || result.trim() === "") {
                 return await interaction.editReply('해당 날짜의 시간표 데이터가 없습니다.');
             }
-            const embed = new EmbedBuilder().setColor(0xa2bffe).setTitle(`${dd}`).setAuthor({name: `${gr}학년 ${cl}반`}).setDescription(`${result}`);
+            const embed = new EmbedBuilder().setColor(0xa2bffe).setTitle(`${dd}`).setAuthor({name: `${gr}학년 ${cl}반`}).setImage(`${link}`).setDescription(`${result}`);
 
             // deferReply 이후에는 editReply를 사용해야 함
             await interaction.editReply({ embeds: [embed] });
@@ -93,6 +102,12 @@ client.on(Events.InteractionCreate, async interaction => {
         const gr = interaction.options.getInteger('학년')
         const cl = interaction.options.getInteger('반')
 
+        if(r>0.5){
+            link = "https://i.imgur.com/ixYYyAh.png";
+        }else{
+            link="https://i.imgur.com/QcvNpvR.png"
+        }
+
         const now = new Date();
 
         const year = now.getFullYear();
@@ -105,7 +120,7 @@ client.on(Events.InteractionCreate, async interaction => {
                 return await interaction.editReply('해당 날짜의 시간표 데이터가 없습니다.');
             }
 
-            const embed = new EmbedBuilder().setColor(0xa2bffe).setTitle(`${month}/${date}`).setAuthor({name: `${gr}학년 ${cl}반`}).setDescription(`${result}`).setFooter({text: `${year}년 ${month}월 ${date}일`});
+            const embed = new EmbedBuilder().setColor(0xa2bffe).setTitle(`${month}/${date}`).setAuthor({name: `${gr}학년 ${cl}반`}).setDescription(`${result}`).setImage(`${link}`).setFooter({text: `${year}년 ${month}월 ${date}일`});
 
             // deferReply 이후에는 editReply를 사용해야 함
             await interaction.editReply({ embeds: [embed] });
@@ -147,6 +162,11 @@ const test = async (interaction) => {
         .map(item => `${item.classTime}교시: ${item.subject}(${item.teacher || '미상'})`)
         .join('\n');
 };
+
+function random(){
+    return Math.random();
+}
+
 
 // --- 봇 로그인 ---
 client.login(token);
