@@ -7,7 +7,7 @@ const OWNER_ID = '682792713485418497';
 import Timetable from 'comcigan-parser';
 const timetable = new Timetable();
 
-var r = random();
+var r;
 var link;
 
 // --- 클라이언트 생성 ---
@@ -52,6 +52,7 @@ client.on(Events.InteractionCreate, async interaction => {
         await interaction.deferReply();
 
         var dd;
+        r = random();
 
         if(r>0.5){
             link = "https://i.imgur.com/ixYYyAh.png";
@@ -101,6 +102,7 @@ client.on(Events.InteractionCreate, async interaction => {
 
         const gr = interaction.options.getInteger('학년')
         const cl = interaction.options.getInteger('반')
+        r = random();
 
         if(r>0.5){
             link = "https://i.imgur.com/ixYYyAh.png";
