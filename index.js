@@ -102,13 +102,6 @@ client.on(Events.InteractionCreate, async interaction => {
 
         const gr = interaction.options.getInteger('학년')
         const cl = interaction.options.getInteger('반')
-        r = random();
-
-        if(r>0.5){
-            link = "https://i.imgur.com/qOfnqZz.png";
-        }else{
-            link="https://i.imgur.com/a4EEB0a.png"
-        }
 
         const now = new Date();
 
@@ -122,7 +115,7 @@ client.on(Events.InteractionCreate, async interaction => {
                 return await interaction.editReply('해당 날짜의 시간표 데이터가 없습니다.');
             }
 
-            const embed = new EmbedBuilder().setColor(0xa2bffe).setTitle(`${month}/${date}`).setAuthor({name: `${gr}학년 ${cl}반`}).setDescription(`${result}`).setImage(`${link}`).setFooter({text: `${year}년 ${month}월 ${date}일`});
+            const embed = new EmbedBuilder().setColor(0xa2bffe).setTitle(`${month}/${date}`).setAuthor({name: `${gr}학년 ${cl}반`}).setDescription(`${result}`).setImage(`https://i.imgur.com/qOfnqZz.png`).setFooter({text: `${year}년 ${month}월 ${date}일`});
 
             // deferReply 이후에는 editReply를 사용해야 함
             await interaction.editReply({ embeds: [embed] });
