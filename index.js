@@ -60,15 +60,15 @@ client.on(Events.InteractionCreate, async interaction => {
             case 1:
                 dd = "화요일"
                 break;
-                case 2:
+            case 2:
                 dd = "수요일"
                 break;
-                case 3:
-                    dd = "목요일"
+            case 3:
+                dd = "목요일"
                 break;
-                    case 4:
-                        dd = "금요일"
-                        break;
+            case 4:
+                dd = "금요일"
+                break;
         }
 
         try {
