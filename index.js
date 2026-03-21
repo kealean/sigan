@@ -52,6 +52,19 @@ client.on(Events.InteractionCreate, async interaction => {
         await interaction.deferReply();
 
         var dd;
+        r = random(0, 3);
+
+        switch(r){
+            case 0:
+                link = "https://i.imgur.com/qOfnqZz.png";
+                break;
+            case 1:
+                link = "https://i.imgur.com/a4EEB0a.png";
+                break;
+            case 2:
+                link = "https://i.imgur.com/CnJ62YE.png";
+                break;
+        }
 
         const gr = interaction.options.getInteger('학년')
         const cl = interaction.options.getInteger('반')
@@ -84,7 +97,7 @@ client.on(Events.InteractionCreate, async interaction => {
                 .setColor(0xa2bffe)
                 .setTitle(`${dd}`)
                 .setAuthor({name: `${gr}학년 ${cl}반`})
-                .setImage(`https://i.imgur.com/qOfnqZz.png`)
+                .setImage(`${link}`)
                 .setDescription(`${result}`);
 
             // deferReply 이후에는 editReply를 사용해야 함
@@ -100,19 +113,6 @@ client.on(Events.InteractionCreate, async interaction => {
 
         const gr = interaction.options.getInteger('학년')
         const cl = interaction.options.getInteger('반')
-        r = random(0, 3);
-
-        switch(r){
-            case 0:
-                link = "https://i.imgur.com/qOfnqZz.png";
-                break;
-            case 1:
-                link = "https://i.imgur.com/a4EEB0a.png";
-                break;
-            case 2:
-                link = "https://i.imgur.com/CnJ62YE.png";
-                break;
-        }
 
         const now = new Date();
         const fix = new Date();
@@ -143,7 +143,8 @@ client.on(Events.InteractionCreate, async interaction => {
                 .setColor(0xa2bffe)
                 .setTitle(`${month}/${fixDate}`)
                 .setAuthor({name: `${gr}학년 ${cl}반`})
-                .setDescription(`${result}`).setImage(`${link}`)
+                .setDescription(`${result}`)
+                .setImage(`https://i.imgur.com/qOfnqZz.png`)
                 .setFooter({text: `${year}년 ${month}월 ${date}일 ${hour}시 ${min}분 ${sec}초 ${millisec}`});
 
             // deferReply 이후에는 editReply를 사용해야 함
