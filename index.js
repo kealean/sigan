@@ -9,7 +9,6 @@ const timetable = new Timetable();
 
 var r;
 var link;
-var rand = 1;
 
 // --- 클라이언트 생성 ---
 const client = new Client({
