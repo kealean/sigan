@@ -117,7 +117,6 @@ client.on(Events.InteractionCreate, async interaction => {
         const year = now.getFullYear();
         const month = now.getMonth() + 1;    // 3 (0이 1월이라 +1 필수!)
         const date = now.getDate();          // 19
-        const fixDate = fix.getDate();
         const hour = now.getHours();
         const min = now.getMinutes();
         const sec = now.getSeconds();
@@ -128,6 +127,7 @@ client.on(Events.InteractionCreate, async interaction => {
         }else if(now.getDay() === 6){
             fix.setDate(fix.getDate()+2);
         }
+        const fixDate = fix.getDate();
 
         try {
             const result = await test(interaction);
