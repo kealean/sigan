@@ -81,7 +81,12 @@ client.on(Events.InteractionCreate, async interaction => {
             if (!result || result.trim() === "") {
                 return await interaction.editReply('해당 날짜의 시간표 데이터가 없습니다.');
             }
-            const embed = new EmbedBuilder().setColor(0xa2bffe).setTitle(`${dd}`).setAuthor({name: `${gr}학년 ${cl}반`}).setImage(`https://i.imgur.com/qOfnqZz.png`).setDescription(`${result}`);
+            const embed = new EmbedBuilder()
+                .setColor(0xa2bffe)
+                .setTitle(`${dd}`)
+                .setAuthor({name: `${gr}학년 ${cl}반`})
+                .setImage(`https://i.imgur.com/qOfnqZz.png`)
+                .setDescription(`${result}`);
 
             // deferReply 이후에는 editReply를 사용해야 함
             await interaction.editReply({ embeds: [embed] });
@@ -118,9 +123,9 @@ client.on(Events.InteractionCreate, async interaction => {
         const sec = now.getSeconds();
         const millisec = now.getMilliseconds();
 
-        if(now.getDay() == 0){
+        if(fix.getDay() === 0){
             fix.setDate(fix.getDate()+1);
-        }else if(now.getDay() == 6){
+        }else if(now.getDay() === 6){
             fix.setDate(fix.getDate()+2);
         }
 
@@ -131,7 +136,12 @@ client.on(Events.InteractionCreate, async interaction => {
                 return await interaction.editReply('해당 날짜의 시간표 데이터가 없습니다.');
             }
 
-            const embed = new EmbedBuilder().setColor(0xa2bffe).setTitle(`${month}/${fixDate}`).setAuthor({name: `${gr}학년 ${cl}반`}).setDescription(`${result}`).setImage(`${link}`).setFooter({text: `${year}년 ${month}월 ${date}일 ${hour}시 ${min}분 ${sec}초 ${millisec}`});
+            const embed = new EmbedBuilder()
+                .setColor(0xa2bffe)
+                .setTitle(`${month}/${fixDate}`)
+                .setAuthor({name: `${gr}학년 ${cl}반`})
+                .setDescription(`${result}`).setImage(`${link}`)
+                .setFooter({text: `${year}년 ${month}월 ${date}일 ${hour}시 ${min}분 ${sec}초 ${millisec}`});
 
             // deferReply 이후에는 editReply를 사용해야 함
             await interaction.editReply({ embeds: [embed] });
