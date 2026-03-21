@@ -101,14 +101,18 @@ client.on(Events.InteractionCreate, async interaction => {
 
         const gr = interaction.options.getInteger('학년')
         const cl = interaction.options.getInteger('반')
-        r = random();
+        r = random(0, 3);
 
-        if(r>rand*2/3){
-            link = "https://i.imgur.com/qOfnqZz.png";
-        }else if(r>rand/3){
-            link = "https://i.imgur.com/a4EEB0a.png";
-        }else{
-            link = "https://i.imgur.com/CnJ62YE.png";
+        switch(r){
+            case 0:
+                link = "https://i.imgur.com/qOfnqZz.png";
+                break;
+            case 1:
+                link = "https://i.imgur.com/a4EEB0a.png";
+                break;
+            case 2:
+                link = "https://i.imgur.com/CnJ62YE.png";
+                break;
         }
 
         const now = new Date();
@@ -184,8 +188,10 @@ const test = async (interaction) => {
         .join('\n');
 };
 
-function random(){
-    return Math.random();
+function random(min, max){
+    const minCeiled = Math.ceil(min);
+    const maxCeiled = Math.floor(max);
+    return Math.floor(Math.random() * (maxCeiled - minCeiled) + minCeiled);
 }
 
 
