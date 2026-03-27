@@ -1,11 +1,11 @@
 import { Client, Events, GatewayIntentBits, EmbedBuilder, PermissionFlagsBits, MessageFlags, ChannelType, Partials } from "discord.js";
-import { readFileSync } from 'fs';
+
 
 // --- 기본 설정 ---
 const { token } = JSON.parse(readFileSync('./config.json', 'utf-8'));
 const OWNER_ID = '682792713485418497';
 import Timetable from 'comcigan-parser';
-const timetable = new Timetable();
+const timetable = new Timetable();import { readFileSync } from 'fs';
 
 var r;
 var link;
@@ -59,7 +59,7 @@ client.on(Events.InteractionCreate, async interaction => {
                 link = "https://i.imgur.com/qOfnqZz.png";
                 break;
             case 1:
-                link = "https://i.imgur.com/a4EEB0a.png";
+                link = "https://i.imgur.com/Bv5pjyk.png";
                 break;
             case 2:
                 link = "https://i.imgur.com/CnJ62YE.png";
