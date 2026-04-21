@@ -52,16 +52,13 @@ client.on(Events.InteractionCreate, async interaction => {
         await interaction.deferReply();
 
         var dd;
-        r = random(0, 3);
+        r = random(0, 2);
 
         switch(r){
             case 0:
                 link = "https://i.imgur.com/qOfnqZz.png";
                 break;
             case 1:
-                link = "https://i.imgur.com/Bv5pjyk.png";
-                break;
-            case 2:
                 link = "https://i.imgur.com/CnJ62YE.png";
                 break;
         }
