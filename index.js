@@ -1,11 +1,12 @@
 import { Client, Events, GatewayIntentBits, EmbedBuilder, PermissionFlagsBits, MessageFlags, ChannelType, Partials } from "discord.js";
 
-
 // --- 기본 설정 ---
-const { token } = JSON.parse(readFileSync('./config.json', 'utf-8'));
+const configRaw = await Deno.readTextFile("./config.json");
+const config = JSON.parse(configRaw)
+const token = config.token;
 const OWNER_ID = '682792713485418497';
 import Timetable from 'comcigan-parser';
-const timetable = new Timetable();import { readFileSync } from 'fs';
+const timetable = new Timetable();
 
 var r;
 var link;
@@ -58,6 +59,7 @@ client.on(Events.InteractionCreate, async interaction => {
             case 0:
                 link = "https://i.imgur.com/qOfnqZz.png";
                 break;
+
             case 1:
                 link = "https://i.imgur.com/CnJ62YE.png";
                 break;
