@@ -1,11 +1,13 @@
 import { REST, Routes, ApplicationCommandOptionType } from 'discord.js';
-import { readFileSync } from 'fs';
 
-const { token, clientID } = JSON.parse(readFileSync('./config.json', 'utf-8'));
+const configRaw = await Deno.readTextFile("./config.json");
+const config = JSON.parse(configRaw)
+const token = config.token;
+const clientID = config.clientID;
 
 const commands = [
   {
-    name: '오늘시간표',
+    name: '시간표',
     description: '오늘의 시간표를 불러옵니다',
     options: [
       {
@@ -34,7 +36,7 @@ const commands = [
     ]
   },
   {
-    name: '시간표',
+    name: '시간표검색',
     description: '시간표를 불러옵니다.',
     options: [
       {

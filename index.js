@@ -48,7 +48,7 @@ client.on(Events.ClientReady, () => {
 client.on(Events.InteractionCreate, async interaction => {
     if (!interaction.isChatInputCommand()) return;
 
-    if (interaction.commandName === '시간표') {
+    if (interaction.commandName === '시간표검색') {
         // [필수] 서버 환경에서 3초 타임아웃 방지를 위해 무조건 첫 줄에 배치
         await interaction.deferReply();
 
@@ -107,7 +107,7 @@ client.on(Events.InteractionCreate, async interaction => {
             await interaction.editReply('시간표를 가져오는 중에 오류가 발생했습니다.');
         }
     }
-    else if(interaction.commandName === '오늘시간표'){
+    else if(interaction.commandName === '시간표'){
         await interaction.deferReply();
 
         const gr = interaction.options.getInteger('학년')
@@ -124,11 +124,18 @@ client.on(Events.InteractionCreate, async interaction => {
         const sec = now.getSeconds();
         const millisec = now.getMilliseconds();
 
+        if(fix.getDay() > 0&&fix.getDay() < 5) {
+                if (fix.getHours > 4 || (fix.getHours() === 4 && fix.getMinutes >= 40)) {
+                    fix.setDate(fix.getDate() + 1);
+                }
+        }
+
         if(fix.getDay() === 0){
             fix.setDate(fix.getDate()+1);
-        }else if(now.getDay() === 6){
+        }else if(fix.getDay() === 6){
             fix.setDate(fix.getDate()+2);
         }
+
         const fixDate = fix.getDate();
 
         try {
